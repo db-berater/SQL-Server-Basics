@@ -32,16 +32,15 @@ GO
 	Note:	The procedure is part of the framework developed by db Berater GmbH
 			for demonstration purposes!
 */
-EXEC dbo.sp_drop_indexes @table_name = N'ALL', @check_only = 0;
+EXEC dbo.sp_drop_indexes
+	@table_name = N'ALL',
+	@check_only = 0;
 GO
 
 
 /************************** LET THE QUERIES START !!! ***************************/
 -- a good developer checks consumed IO and TIME and the execution plan EVERY TIME!
 SET STATISTICS IO, TIME ON;
-GO
-
-SET LANGUAGE us_english;
 GO
 
 -- SELECT all data from dbo.orders from 2018-12-20
@@ -58,7 +57,8 @@ GO
 	Note:	The procedure is part of the framework developed by db Berater GmbH
 			for demonstration purposes!
 */
-EXEC sp_create_indexes_orders @column_list = N'o_orderdate';
+EXEC sp_create_indexes_orders
+	@column_list = N'o_orderdate';
 GO
 
 -- rerun the above query for improvement checks
@@ -132,8 +132,9 @@ GO
 	Note:	The procedure is part of the framework developed by db Berater GmbH
 			for demonstration purposes!
 */
-EXEC dbo.sp_drop_indexes @table_name = N'dbo.orders', @check_only = 0;
-EXEC dbo. sp_create_indexes_orders @column_list = N'o_orderkey, o_orderdate';
+EXEC dbo. sp_create_indexes_orders
+	@column_list = N'o_orderkey, o_orderdate';
+GO
 
 SELECT	gtp.index_id,
         gtp.partition_number,

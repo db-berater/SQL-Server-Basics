@@ -31,14 +31,21 @@ GO
 	Note:	The procedure is part of the framework developed by db Berater GmbH
 			for demonstration purposes!
 */
-EXEC dbo.sp_drop_indexes @table_name = N'dbo.customers', @check_only = 0;
+EXEC dbo.sp_drop_indexes
+    @table_name = N'dbo.customers',
+    @check_only = 0;
 GO
 
 
 /*
 	Create a non unique clustered index on dbo.customers
 */
-CREATE CLUSTERED INDEX pk_customers ON dbo.customers (c_custkey);
+CREATE CLUSTERED INDEX pk_customers ON dbo.customers (c_custkey)
+WITH
+(
+    DATA_COMPRESSION = PAGE,
+    SORT_IN_TEMPDB = ON
+);
 GO
 
 /*
@@ -173,7 +180,8 @@ WITH
 (
 	DROP_EXISTING = ON,
 	MAXDOP = 1,
-	DATA_COMPRESSION = NONE
+	DATA_COMPRESSION = PAGE,
+    SORT_IN_TEMPDB = ON
 );
 GO
 
