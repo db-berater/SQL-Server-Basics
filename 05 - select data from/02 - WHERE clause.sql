@@ -34,6 +34,9 @@ GO
 USE ERP_Demo;
 GO
 
+SET STATISTICS IO, TIME ON;
+GO
+
 /* customer with c_custkey = 1000 */
 SELECT	c.c_custkey,
         c.c_mktsegment,
@@ -44,7 +47,8 @@ SELECT	c.c_custkey,
         c.c_acctbal,
         c.c_comment
 FROM	dbo.customers AS c
-WHERE	c.c_custkey = 1000;
+WHERE	c.c_custkey = 1000
+OPTION  (QUERYTRACEON 9130);
 GO
 
 /*

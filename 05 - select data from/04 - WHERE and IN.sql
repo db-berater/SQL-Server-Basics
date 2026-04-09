@@ -1,8 +1,8 @@
 /*
 	============================================================================
-	File:		03 - WHERE and dates.sql
+	File:		04 - WHERE and IN.sql
 
-	Summary:	This script demonstrates the specific problems with date formats
+	Summary:	This script demonstrates the specific problems with IN clause
 				in Microsoft SQL Server!
 
 				THIS SCRIPT IS PART OF THE TRACK: "Workshop - SQL Server Basics"

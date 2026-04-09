@@ -32,6 +32,9 @@ GO
 /*
 	output of all existing columns of a table with "*" as placeholder
 */
+SET STATISTICS IO, TIME ON;
+GO
+
 SELECT	TOP (100)
 		*
 FROM	dbo.customers;
@@ -73,9 +76,10 @@ SELECT	TOP (100)
 FROM	dbo.customers ;
 GO
 
-SELECT	TOP (100)
+SELECT	TOP (10000)
 		o_orderdate,
-		CHOOSE(DATEPART(WEEKDAY, o_orderdate), 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa')	AS	weekday,
+		---CHOOSE(DATEPART(WEEKDAY, o_orderdate), 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa')	AS	weekday,
+		dbo.get_weekday(o_orderdate) AS week_day,
         o_orderkey,
         o_custkey,
         o_orderpriority,
@@ -86,6 +90,7 @@ SELECT	TOP (100)
         o_comment,
         o_storekey
 FROM	dbo.orders 
+WHERE	o_orderdate = '2020-01-01'
 GO
 
 
